@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NeuralPulse – AI & Tech News</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', 'Segoe UI', sans-serif; }
+    a { text-decoration: none; }
+    input, button { font-family: inherit; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState } = React;
+
+    const posts = [
+      {
+        id: 1,
+        title: "Claude Fable 5: What Happened and What Comes Next",
+        excerpt: "Anthropic's most powerful public model lasted just three days before the US government pulled it offline. Here's the full story and what it means for AI development.",
+        category: "AI News",
+        date: "Jun 18, 2026",
+        readTime: "5 min read",
+        featured: true,
+        emoji: "🤖",
+      },
+      {
+        id: 2,
+        title: "Google's Gemini Ultra 3 vs Claude Opus 4.8: Real-World Tests",
+        excerpt: "We ran 50 tasks across both models — coding, analysis, creative writing, and reasoning. The results might surprise you.",
+        category: "Comparisons",
+        date: "Jun 15, 2026",
+        readTime: "8 min read",
+        featured: false,
+        emoji: "⚡",
+      },
+      {
+        id: 3,
+        title: "How to Make Money With AI Tools in 2026",
+        excerpt: "From prompt engineering gigs to AI-assisted freelancing, here are the income streams that actually work this year.",
+        category: "AI & Money",
+        date: "Jun 12, 2026",
+        readTime: "6 min read",
+        featured: false,
+        emoji: "💰",
+      },
+      {
+        id: 4,
+        title: "Top 10 Free AI Tools You Should Be Using Right Now",
+        excerpt: "Most people only know ChatGPT and Claude. Here are 10 powerful free AI tools flying under the radar.",
+        category: "Tools",
+        date: "Jun 10, 2026",
+        readTime: "4 min read",
+        featured: false,
+        emoji: "🛠️",
+      },
+      {
+        id: 5,
+        title: "The Rise of Agentic AI: When Your AI Works While You Sleep",
+        excerpt: "Autonomous agents can now run for days without human input. Here's what that means for productivity, jobs, and the future.",
+        category: "Deep Dive",
+        date: "Jun 7, 2026",
+        readTime: "10 min read",
+        featured: false,
+        emoji: "🌙",
+      },
+      {
+        id: 6,
+        title: "Pi Network in 2026: Is It Finally Worth Something?",
+        excerpt: "Pi has been in mainnet for a while now. We break down the real current value, how to cash out, and whether it's too late to benefit.",
+        category: "Crypto & AI",
+        date: "Jun 4, 2026",
+        readTime: "7 min read",
+        featured: false,
+        emoji: "🔵",
+      },
+    ];
+
+    const categories = ["All", "AI News", "Comparisons", "AI & Money", "Tools", "Deep Dive", "Crypto & AI"];
+
+    const AdBanner = ({ dark, size = "leaderboard" }) => {
+      const styles = {
+        leaderboard: { width: "100%", height: "90px", label: "Advertisement · 728×90" },
+        rectangle: { width: "100%", height: "250px", label: "Advertisement · 300×250" },
+      };
+      const s = styles[size];
+      return (
+        <div style={{
+          width: s.width,
+          height: s.height,
+          background: dark ? "#1a1a2e" : "#f0f0f0",
+          border: `1px dashed ${dark ? "#444" : "#bbb"}`,
+          borderRadius: "8px",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          margin: "24px 0",
+          gap: "6px",
+        }}>
+          <span style={{ fontSize: "10px", color: dark ? "#666" : "#aaa", textTransform: "uppercase", letterSpacing: "2px" }}>
+            {s.label}
+          </span>
+          <span style={{ fontSize: "12px", color: dark ? "#555" : "#bbb" }}>Google AdSense · Replace with your ad code</span>
+        </div>
+      );
+    };
+
+    function NeuralPulse() {
+      const [dark, setDark] = useState(true);
+      const [activeCategory, setActiveCategory] = useState("All");
+      const [hoveredPost, setHoveredPost] = useState(null);
+
+      const c = {
+        bg: dark ? "#0d0d14" : "#fafafa",
+        surface: dark ? "#13131f" : "#ffffff",
+        surfaceHover: dark ? "#1a1a2e" : "#f5f5ff",
+        border: dark ? "#222236" : "#e8e8f0",
+        accent: "#7c5cfc",
+        accentGlow: dark ? "rgba(124,92,252,0.15)" : "rgba(124,92,252,0.08)",
+        text: dark ? "#e8e8f5" : "#111120",
+        muted: dark ? "#7878a0" : "#8888a8",
+        tag: dark ? "#1e1e38" : "#eeecff",
+        tagText: dark ? "#9d88ff" : "#6644dd",
+        navBg: dark ? "rgba(13,13,20,0.92)" : "rgba(250,250,250,0.92)",
+      };
+
+      const filtered = activeCategory === "All" ? posts : posts.filter(p => p.category === activeCategory);
+      const featured = posts.find(p => p.featured);
+      const rest = filtered.filter(p => !p.featured || activeCategory !== "All");
+
+      return (
+        <div style={{ background: c.bg, minHeight: "100vh", fontFamily: "'Inter','Segoe UI',sans-serif", color: c.text, transition: "all 0.3s ease" }}>
+
+          {/* NAV */}
+          <nav style={{
+            position: "sticky", top: 0, zIndex: 100,
+            background: c.navBg,
+            backdropFilter: "blur(12px)",
+            borderBottom: `1px solid ${c.border}`,
+            padding: "0 24px",
+            height: "60px",
+            display: "flex", alignItems: "center", justifyContent: "space-between",
+          }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+              <div style={{
+                width: "28px", height: "28px", borderRadius: "8px",
+                background: "linear-gradient(135deg, #7c5cfc, #c45cfc)",
+                display: "flex", alignItems: "center", justifyContent: "center",
+                fontSize: "14px",
+              }}>⚡</div>
+              <span style={{ fontWeight: 800, fontSize: "18px", letterSpacing: "-0.5px" }}>
+                Neural<span style={{ color: c.accent }}>Pulse</span>
+              </span>
+            </div>
+
+            <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
+              <div style={{ display: "flex", gap: "20px" }}>
+                {["Home", "Topics", "About"].map(item => (
+                  <a key={item} href="#" style={{ color: c.muted, fontSize: "14px", fontWeight: 500 }}>{item}</a>
+                ))}
+              </div>
+              <button onClick={() => setDark(!dark)} style={{
+                background: dark ? "#1e1e38" : "#e8e8f8",
+                border: "none", borderRadius: "20px",
+                padding: "6px 12px", cursor: "pointer",
+                display: "flex", alignItems: "center", gap: "6px",
+                color: c.text, fontSize: "13px", fontWeight: 600,
+              }}>
+                <span>{dark ? "☀️" : "🌙"}</span>
+                <span>{dark ? "Light" : "Dark"}</span>
+              </button>
+            </div>
+          </nav>
+
+          {/* AD BANNER TOP */}
+          <div style={{ maxWidth: "900px", margin: "0 auto", padding: "0 24px" }}>
+            <AdBanner dark={dark} size="leaderboard" />
+          </div>
+
+          {/* HERO / FEATURED POST */}
+          {activeCategory === "All" && featured && (
+            <div style={{ maxWidth: "900px", margin: "0 auto 40px", padding: "0 24px" }}>
+              <div style={{
+                background: `linear-gradient(135deg, ${dark ? "#13131f" : "#ffffff"}, ${dark ? "#1a1230" : "#f5f0ff"})`,
+                border: `1px solid ${c.border}`,
+                borderRadius: "16px",
+                padding: "36px",
+                position: "relative",
+                overflow: "hidden",
+                cursor: "pointer",
+              }}>
+                <div style={{
+                  position: "absolute", top: "-40px", right: "-40px",
+                  width: "200px", height: "200px", borderRadius: "50%",
+                  background: "rgba(124,92,252,0.12)",
+                  filter: "blur(40px)",
+                  pointerEvents: "none",
+                }} />
+
+                <div style={{ display: "flex", gap: "10px", marginBottom: "16px", flexWrap: "wrap" }}>
+                  <span style={{
+                    background: c.accent, color: "#fff",
+                    padding: "3px 10px", borderRadius: "20px", fontSize: "11px", fontWeight: 700,
+                    textTransform: "uppercase", letterSpacing: "0.8px",
+                  }}>Featured</span>
+                  <span style={{
+                    background: c.tag, color: c.tagText,
+                    padding: "3px 10px", borderRadius: "20px", fontSize: "11px", fontWeight: 600,
+                  }}>{featured.category}</span>
+                </div>
+
+                <div style={{ fontSize: "32px", marginBottom: "12px" }}>{featured.emoji}</div>
+                <h1 style={{ fontSize: "clamp(20px, 4vw, 28px)", fontWeight: 800, lineHeight: 1.2, marginBottom: "14px", letterSpacing: "-0.5px" }}>
+                  {featured.title}
+                </h1>
+                <p style={{ color: c.muted, fontSize: "16px", lineHeight: 1.7, marginBottom: "20px" }}>{featured.excerpt}</p>
+                <div style={{ display: "flex", alignItems: "center", gap: "16px", flexWrap: "wrap" }}>
+                  <span style={{ color: c.muted, fontSize: "13px" }}>📅 {featured.date}</span>
+                  <span style={{ color: c.muted, fontSize: "13px" }}>⏱ {featured.readTime}</span>
+                  <button style={{
+                    background: c.accent, color: "#fff", border: "none",
+                    padding: "8px 20px", borderRadius: "8px", fontSize: "13px", fontWeight: 700,
+                    cursor: "pointer", marginLeft: "auto",
+                  }}>Read Article →</button>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* CATEGORY FILTER */}
+          <div style={{ maxWidth: "900px", margin: "0 auto 32px", padding: "0 24px" }}>
+            <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+              {categories.map(cat => (
+                <button key={cat} onClick={() => setActiveCategory(cat)} style={{
+                  background: activeCategory === cat ? c.accent : c.surface,
+                  color: activeCategory === cat ? "#fff" : c.muted,
+                  border: `1px solid ${activeCategory === cat ? c.accent : c.border}`,
+                  borderRadius: "20px", padding: "6px 16px",
+                  fontSize: "13px", fontWeight: 600, cursor: "pointer",
+                  transition: "all 0.2s",
+                }}>
+                  {cat}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* POSTS GRID */}
+          <div style={{ maxWidth: "900px", margin: "0 auto", padding: "0 24px" }}>
+            <div style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))",
+              gap: "20px",
+              marginBottom: "40px",
+            }}>
+              {rest.map((post, i) => (
+                <React.Fragment key={post.id}>
+                  <div
+                    onMouseEnter={() => setHoveredPost(post.id)}
+                    onMouseLeave={() => setHoveredPost(null)}
+                    style={{
+                      background: hoveredPost === post.id ? c.surfaceHover : c.surface,
+                      border: `1px solid ${hoveredPost === post.id ? c.accent : c.border}`,
+                      borderRadius: "12px", padding: "24px", cursor: "pointer",
+                      transition: "all 0.2s",
+                      transform: hoveredPost === post.id ? "translateY(-2px)" : "none",
+                      boxShadow: hoveredPost === post.id ? `0 8px 30px ${c.accentGlow}` : "none",
+                    }}
+                  >
+                    <div style={{ fontSize: "28px", marginBottom: "12px" }}>{post.emoji}</div>
+                    <span style={{
+                      background: c.tag, color: c.tagText,
+                      padding: "2px 8px", borderRadius: "10px", fontSize: "11px", fontWeight: 600,
+                    }}>{post.category}</span>
+                    <h2 style={{ fontSize: "16px", fontWeight: 700, lineHeight: 1.4, margin: "12px 0 8px", letterSpacing: "-0.2px" }}>
+                      {post.title}
+                    </h2>
+                    <p style={{ color: c.muted, fontSize: "13px", lineHeight: 1.6, marginBottom: "16px" }}>
+                      {post.excerpt}
+                    </p>
+                    <div style={{ display: "flex", gap: "12px", fontSize: "12px", color: c.muted }}>
+                      <span>📅 {post.date}</span>
+                      <span>⏱ {post.readTime}</span>
+                    </div>
+                  </div>
+
+                  {i === 2 && (
+                    <div style={{ gridColumn: "1 / -1" }}>
+                      <AdBanner dark={dark} size="leaderboard" />
+                    </div>
+                  )}
+                </React.Fragment>
+              ))}
+            </div>
+
+            <AdBanner dark={dark} size="rectangle" />
+          </div>
+
+          {/* NEWSLETTER */}
+          <div style={{ maxWidth: "900px", margin: "0 auto 60px", padding: "0 24px" }}>
+            <div style={{
+              background: `linear-gradient(135deg, ${c.accent}22, ${dark ? "#1a1230" : "#f0eeff"})`,
+              border: `1px solid ${c.accent}44`,
+              borderRadius: "16px", padding: "36px", textAlign: "center",
+            }}>
+              <div style={{ fontSize: "32px", marginBottom: "12px" }}>📬</div>
+              <h3 style={{ fontSize: "22px", fontWeight: 800, marginBottom: "8px" }}>Stay ahead of AI</h3>
+              <p style={{ color: c.muted, marginBottom: "20px", fontSize: "15px" }}>
+                Weekly digest of the biggest AI news, tools, and money-making opportunities.
+              </p>
+              <div style={{ display: "flex", gap: "10px", maxWidth: "400px", margin: "0 auto", flexWrap: "wrap", justifyContent: "center" }}>
+                <input
+                  type="email"
+                  placeholder="your@email.com"
+                  style={{
+                    flex: 1, minWidth: "200px", padding: "10px 16px", borderRadius: "8px",
+                    border: `1px solid ${c.border}`, background: c.surface,
+                    color: c.text, fontSize: "14px", outline: "none",
+                  }}
+                />
+                <button style={{
+                  background: c.accent, color: "#fff", border: "none",
+                  padding: "10px 20px", borderRadius: "8px", fontWeight: 700,
+                  fontSize: "14px", cursor: "pointer",
+                }}>Subscribe</button>
+              </div>
+            </div>
+          </div>
+
+          {/* FOOTER */}
+          <footer style={{
+            borderTop: `1px solid ${c.border}`,
+            padding: "24px",
+            textAlign: "center",
+            color: c.muted,
+            fontSize: "13px",
+          }}>
+            <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "8px", marginBottom: "8px" }}>
+              <div style={{
+                width: "20px", height: "20px", borderRadius: "6px",
+                background: "linear-gradient(135deg, #7c5cfc, #c45cfc)",
+                display: "flex", alignItems: "center", justifyContent: "center",
+                fontSize: "10px",
+              }}>⚡</div>
+              <span style={{ fontWeight: 700, color: c.text }}>NeuralPulse</span>
+            </div>
+            <p>© 2026 NeuralPulse · AI & Tech News · All rights reserved</p>
+            <div style={{ display: "flex", justifyContent: "center", gap: "16px", marginTop: "10px" }}>
+              {["Privacy Policy", "Terms", "Advertise", "Contact"].map(link => (
+                <a key={link} href="#" style={{ color: c.muted, fontSize: "12px" }}>{link}</a>
+              ))}
+            </div>
+          </footer>
+        </div>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<NeuralPulse />);
+  </script>
+</body>
+</html>
