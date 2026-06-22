@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About – NeuralPulse</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #0d0d14; color: #e8e8f5; font-family: 'Inter', 'Segoe UI', sans-serif; line-height: 1.8; }
+    a { text-decoration: none; color: #9d88ff; }
+    nav { position: sticky; top: 0; z-index: 100; background: rgba(13,13,20,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid #222236; padding: 0 24px; height: 60px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { display: flex; align-items: center; gap: 8px; }
+    .nav-logo-icon { width: 28px; height: 28px; border-radius: 8px; background: linear-gradient(135deg, #7c5cfc, #c45cfc); display: flex; align-items: center; justify-content: center; font-size: 14px; }
+    .nav-logo-text { font-weight: 800; font-size: 18px; letter-spacing: -0.5px; color: #e8e8f5; }
+    .nav-logo-text span { color: #7c5cfc; }
+    .nav-back { color: #7878a0; font-size: 14px; font-weight: 500; }
+    .nav-back:hover { color: #e8e8f5; }
+    .wrap { max-width: 720px; margin: 0 auto; padding: 48px 24px 80px; }
+    .hero { background: linear-gradient(135deg, #13131f, #1a1230); border: 1px solid #222236; border-radius: 16px; padding: 40px; text-align: center; margin-bottom: 48px; position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; top: -40px; right: -40px; width: 200px; height: 200px; border-radius: 50%; background: rgba(124,92,252,0.12); filter: blur(40px); pointer-events: none; }
+    .hero-icon { font-size: 48px; margin-bottom: 16px; }
+    .hero h1 { font-size: 32px; font-weight: 800; margin-bottom: 12px; }
+    .hero p { color: #7878a0; font-size: 16px; max-width: 500px; margin: 0 auto; }
+    h2 { font-size: 22px; font-weight: 700; margin: 40px 0 14px; }
+    p { color: #b0b0cc; font-size: 16px; line-height: 1.85; margin-bottom: 16px; }
+    .values { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; margin: 24px 0; }
+    .value-card { background: #13131f; border: 1px solid #222236; border-radius: 12px; padding: 20px; }
+    .value-emoji { font-size: 28px; margin-bottom: 10px; }
+    .value-title { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+    .value-desc { color: #7878a0; font-size: 13px; }
+    .cta { background: linear-gradient(135deg, rgba(124,92,252,0.13), #1a1230); border: 1px solid rgba(124,92,252,0.27); border-radius: 16px; padding: 32px; text-align: center; margin-top: 48px; }
+    .cta h3 { font-size: 20px; font-weight: 800; margin-bottom: 8px; }
+    .cta p { color: #7878a0; margin-bottom: 16px; }
+    .cta a { background: #7c5cfc; color: #fff; padding: 10px 24px; border-radius: 8px; font-weight: 700; font-size: 14px; display: inline-block; }
+    footer { border-top: 1px solid #222236; padding: 24px; text-align: center; color: #7878a0; font-size: 13px; }
+    .footer-logo { display: flex; justify-content: center; align-items: center; gap: 8px; margin-bottom: 8px; }
+    .footer-logo-icon { width: 20px; height: 20px; border-radius: 6px; background: linear-gradient(135deg, #7c5cfc, #c45cfc); display: flex; align-items: center; justify-content: center; font-size: 10px; }
+    .footer-links { display: flex; justify-content: center; gap: 16px; margin-top: 10px; flex-wrap: wrap; }
+    .footer-links a { color: #7878a0; font-size: 12px; }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-logo"><div class="nav-logo-icon">⚡</div><span class="nav-logo-text">Neural<span>Pulse</span></span></div>
+    <a href="index.html" class="nav-back">← Back to Home</a>
+  </nav>
+
+  <div class="wrap">
+    <div class="hero">
+      <div class="hero-icon">⚡</div>
+      <h1>About NeuralPulse</h1>
+      <p>Your independent source for AI news, tool reviews, and practical guides on making the most of artificial intelligence in 2026.</p>
+    </div>
+
+    <h2>Who We Are</h2>
+    <p>NeuralPulse is an independent AI and technology news blog founded in 2026. We cover the rapidly evolving world of artificial intelligence — from the latest model releases and research breakthroughs to practical guides on using AI tools to earn money, boost productivity, and stay ahead of the curve.</p>
+    <p>We believe that understanding AI shouldn't be reserved for engineers and researchers. Our mission is to make AI accessible, understandable, and useful for everyone — whether you're a student, entrepreneur, developer, or just someone curious about the future.</p>
+
+    <h2>What We Cover</h2>
+    <div class="values">
+      <div class="value-card"><div class="value-emoji">🤖</div><div class="value-title">AI News</div><div class="value-desc">Breaking news and analysis on the latest AI developments from Anthropic, Google, OpenAI, and beyond.</div></div>
+      <div class="value-card"><div class="value-emoji">🛠️</div><div class="value-title">Tool Reviews</div><div class="value-desc">Honest, in-depth reviews of AI tools — what works, what doesn't, and what's actually worth your time.</div></div>
+      <div class="value-card"><div class="value-emoji">💰</div><div class="value-title">AI & Money</div><div class="value-desc">Practical guides on using AI to generate income, from freelancing to building passive income streams.</div></div>
+      <div class="value-card"><div class="value-emoji">🔵</div><div class="value-title">Crypto & AI</div><div class="value-desc">Coverage of the intersection between AI and cryptocurrency — projects, trends, and opportunities.</div></div>
+    </div>
+
+    <h2>Our Values</h2>
+    <p><strong style="color:#e8e8f5;">Independence.</strong> We are not funded by or affiliated with any AI company. Our opinions are our own.</p>
+    <p><strong style="color:#e8e8f5;">Accuracy.</strong> We take care to verify information before publishing. When something is uncertain, we say so.</p>
+    <p><strong style="color:#e8e8f5;">Accessibility.</strong> We write for real people, not academics. No unnecessary jargon. Just clear, useful information.</p>
+
+    <div class="cta">
+      <h3>Stay in the loop 📬</h3>
+      <p>Get our weekly digest of the biggest AI news and opportunities — straight to your inbox.</p>
+      <a href="index.html#newsletter">Subscribe Free</a>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-logo"><div class="footer-logo-icon">⚡</div><span style="font-weight:700;color:#e8e8f5;">NeuralPulse</span></div>
+    <p>© 2026 NeuralPulse · AI & Tech News · All rights reserved</p>
+    <div class="footer-links"><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms</a><a href="about.html">About</a><a href="contact.html">Contact</a></div>
+  </footer>
+</body>
+</html>
