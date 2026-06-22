@@ -12,43 +12,17 @@
     body { font-family: 'Inter', 'Segoe UI', sans-serif; }
     a { text-decoration: none; }
     input, button { font-family: inherit; }
-
-    /* Mailchimp form overrides to match NeuralPulse dark theme */
-    #mc_embed_signup {
-      background: transparent !important;
-      width: 100% !important;
-      font-family: 'Inter', 'Segoe UI', sans-serif !important;
-    }
+    #mc_embed_signup { background: transparent !important; width: 100% !important; font-family: 'Inter', 'Segoe UI', sans-serif !important; }
     #mc_embed_signup h2 { display: none; }
     #mc_embed_signup .indicates-required { display: none; }
     #mc_embed_signup_scroll { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; align-items: flex-end; }
     #mc_embed_signup .mc-field-group { margin: 0 !important; padding: 0 !important; width: auto !important; flex: 1; min-width: 200px; }
     #mc_embed_signup .mc-field-group label { display: none; }
-    #mc_embed_signup input.email {
-      width: 100% !important;
-      padding: 10px 16px !important;
-      border-radius: 8px !important;
-      border: 1px solid #222236 !important;
-      background: #13131f !important;
-      color: #e8e8f5 !important;
-      font-size: 14px !important;
-      outline: none !important;
-    }
+    #mc_embed_signup input.email { width: 100% !important; padding: 10px 16px !important; border-radius: 8px !important; border: 1px solid #222236 !important; background: #13131f !important; color: #e8e8f5 !important; font-size: 14px !important; outline: none !important; }
     #mc_embed_signup input.email::placeholder { color: #7878a0; }
     #mc_embed_signup .optionalParent { margin: 0 !important; }
     #mc_embed_signup .clear.foot { display: flex; flex-direction: column; align-items: center; gap: 8px; }
-    #mc_embed_signup input.button {
-      background: #7c5cfc !important;
-      color: #fff !important;
-      border: none !important;
-      padding: 10px 20px !important;
-      border-radius: 8px !important;
-      font-weight: 700 !important;
-      font-size: 14px !important;
-      cursor: pointer !important;
-      width: auto !important;
-      margin: 0 !important;
-    }
+    #mc_embed_signup input.button { background: #7c5cfc !important; color: #fff !important; border: none !important; padding: 10px 20px !important; border-radius: 8px !important; font-weight: 700 !important; font-size: 14px !important; cursor: pointer !important; width: auto !important; margin: 0 !important; }
     #mc_embed_signup .refferal_badge { display: none !important; }
     #mc_embed_signup p { display: none !important; }
     #mce-responses { width: 100%; text-align: center; }
@@ -63,12 +37,12 @@
     const { useState } = React;
 
     const posts = [
-      { id: 1, title: "Claude Fable 5: What Happened and What Comes Next", excerpt: "Anthropic's most powerful public model lasted just three days before the US government pulled it offline. Here's the full story and what it means for AI development.", category: "AI News", date: "Jun 18, 2026", readTime: "5 min read", featured: true, emoji: "🤖" },
-      { id: 2, title: "Google's Gemini Ultra 3 vs Claude Opus 4.8: Real-World Tests", excerpt: "We ran 50 tasks across both models — coding, analysis, creative writing, and reasoning. The results might surprise you.", category: "Comparisons", date: "Jun 15, 2026", readTime: "8 min read", featured: false, emoji: "⚡" },
-      { id: 3, title: "How to Make Money With AI Tools in 2026", excerpt: "From prompt engineering gigs to AI-assisted freelancing, here are the income streams that actually work this year.", category: "AI & Money", date: "Jun 12, 2026", readTime: "6 min read", featured: false, emoji: "💰" },
-      { id: 4, title: "Top 10 Free AI Tools You Should Be Using Right Now", excerpt: "Most people only know ChatGPT and Claude. Here are 10 powerful free AI tools flying under the radar.", category: "Tools", date: "Jun 10, 2026", readTime: "4 min read", featured: false, emoji: "🛠️" },
-      { id: 5, title: "The Rise of Agentic AI: When Your AI Works While You Sleep", excerpt: "Autonomous agents can now run for days without human input. Here's what that means for productivity, jobs, and the future.", category: "Deep Dive", date: "Jun 7, 2026", readTime: "10 min read", featured: false, emoji: "🌙" },
-      { id: 6, title: "Pi Network in 2026: Is It Finally Worth Something?", excerpt: "Pi has been in mainnet for a while now. We break down the real current value, how to cash out, and whether it's too late to benefit.", category: "Crypto & AI", date: "Jun 4, 2026", readTime: "7 min read", featured: false, emoji: "🔵" },
+      { id: 1, title: "Claude Fable 5: What Happened and What Comes Next", excerpt: "Anthropic's most powerful public model lasted just three days before the US government pulled it offline. Here's the full story and what it means for AI development.", category: "AI News", date: "Jun 18, 2026", readTime: "5 min read", featured: true, emoji: "🤖", link: "article1.html" },
+      { id: 2, title: "Google's Gemini Ultra 3 vs Claude Opus 4.8: Real-World Tests", excerpt: "We ran 50 tasks across both models — coding, analysis, creative writing, and reasoning. The results might surprise you.", category: "Comparisons", date: "Jun 15, 2026", readTime: "8 min read", featured: false, emoji: "⚡", link: "article2.html" },
+      { id: 3, title: "How to Make Money With AI Tools in 2026", excerpt: "From prompt engineering gigs to AI-assisted freelancing, here are the income streams that actually work this year.", category: "AI & Money", date: "Jun 12, 2026", readTime: "6 min read", featured: false, emoji: "💰", link: "article3.html" },
+      { id: 4, title: "Top 10 Free AI Tools You Should Be Using Right Now", excerpt: "Most people only know ChatGPT and Claude. Here are 10 powerful free AI tools flying under the radar.", category: "Tools", date: "Jun 10, 2026", readTime: "4 min read", featured: false, emoji: "🛠️", link: "article4.html" },
+      { id: 5, title: "The Rise of Agentic AI: When Your AI Works While You Sleep", excerpt: "Autonomous agents can now run for days without human input. Here's what that means for productivity, jobs, and the future.", category: "Deep Dive", date: "Jun 7, 2026", readTime: "10 min read", featured: false, emoji: "🌙", link: "article5.html" },
+      { id: 6, title: "Pi Network in 2026: Is It Finally Worth Something?", excerpt: "Pi has been in mainnet for a while now. We break down the real current value, how to cash out, and whether it's too late to benefit.", category: "Crypto & AI", date: "Jun 4, 2026", readTime: "7 min read", featured: false, emoji: "🔵", link: "article6.html" },
     ];
 
     const categories = ["All", "AI News", "Comparisons", "AI & Money", "Tools", "Deep Dive", "Crypto & AI"];
@@ -113,7 +87,6 @@
       return (
         <div style={{ background: c.bg, minHeight: "100vh", fontFamily: "'Inter','Segoe UI',sans-serif", color: c.text, transition: "all 0.3s ease" }}>
 
-          {/* NAV */}
           <nav style={{ position: "sticky", top: 0, zIndex: 100, background: c.navBg, backdropFilter: "blur(12px)", borderBottom: `1px solid ${c.border}`, padding: "0 24px", height: "60px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
             <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
               <div style={{ width: "28px", height: "28px", borderRadius: "8px", background: "linear-gradient(135deg, #7c5cfc, #c45cfc)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "14px" }}>⚡</div>
@@ -126,18 +99,15 @@
                 ))}
               </div>
               <button onClick={() => setDark(!dark)} style={{ background: dark ? "#1e1e38" : "#e8e8f8", border: "none", borderRadius: "20px", padding: "6px 12px", cursor: "pointer", display: "flex", alignItems: "center", gap: "6px", color: c.text, fontSize: "13px", fontWeight: 600 }}>
-                <span>{dark ? "☀️" : "🌙"}</span>
-                <span>{dark ? "Light" : "Dark"}</span>
+                <span>{dark ? "☀️" : "🌙"}</span><span>{dark ? "Light" : "Dark"}</span>
               </button>
             </div>
           </nav>
 
-          {/* AD BANNER TOP */}
           <div style={{ maxWidth: "900px", margin: "0 auto", padding: "0 24px" }}>
             <AdBanner dark={dark} size="leaderboard" />
           </div>
 
-          {/* HERO */}
           {activeCategory === "All" && featured && (
             <div style={{ maxWidth: "900px", margin: "0 auto 40px", padding: "0 24px" }}>
               <div style={{ background: `linear-gradient(135deg, ${dark ? "#13131f" : "#ffffff"}, ${dark ? "#1a1230" : "#f5f0ff"})`, border: `1px solid ${c.border}`, borderRadius: "16px", padding: "36px", position: "relative", overflow: "hidden", cursor: "pointer" }}>
@@ -152,13 +122,12 @@
                 <div style={{ display: "flex", alignItems: "center", gap: "16px", flexWrap: "wrap" }}>
                   <span style={{ color: c.muted, fontSize: "13px" }}>📅 {featured.date}</span>
                   <span style={{ color: c.muted, fontSize: "13px" }}>⏱ {featured.readTime}</span>
-                  <button style={{ background: c.accent, color: "#fff", border: "none", padding: "8px 20px", borderRadius: "8px", fontSize: "13px", fontWeight: 700, cursor: "pointer", marginLeft: "auto" }}>Read Article →</button>
+                  <a href={featured.link} style={{ background: c.accent, color: "#fff", border: "none", padding: "8px 20px", borderRadius: "8px", fontSize: "13px", fontWeight: 700, cursor: "pointer", marginLeft: "auto", display: "inline-block" }}>Read Article →</a>
                 </div>
               </div>
             </div>
           )}
 
-          {/* CATEGORY FILTER */}
           <div style={{ maxWidth: "900px", margin: "0 auto 32px", padding: "0 24px" }}>
             <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
               {categories.map(cat => (
@@ -167,21 +136,19 @@
             </div>
           </div>
 
-          {/* POSTS GRID */}
           <div style={{ maxWidth: "900px", margin: "0 auto", padding: "0 24px" }}>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))", gap: "20px", marginBottom: "40px" }}>
               {rest.map((post, i) => (
                 <React.Fragment key={post.id}>
-                  <div onMouseEnter={() => setHoveredPost(post.id)} onMouseLeave={() => setHoveredPost(null)} style={{ background: hoveredPost === post.id ? c.surfaceHover : c.surface, border: `1px solid ${hoveredPost === post.id ? c.accent : c.border}`, borderRadius: "12px", padding: "24px", cursor: "pointer", transition: "all 0.2s", transform: hoveredPost === post.id ? "translateY(-2px)" : "none", boxShadow: hoveredPost === post.id ? `0 8px 30px ${c.accentGlow}` : "none" }}>
+                  <a href={post.link} onMouseEnter={() => setHoveredPost(post.id)} onMouseLeave={() => setHoveredPost(null)} style={{ background: hoveredPost === post.id ? c.surfaceHover : c.surface, border: `1px solid ${hoveredPost === post.id ? c.accent : c.border}`, borderRadius: "12px", padding: "24px", cursor: "pointer", transition: "all 0.2s", transform: hoveredPost === post.id ? "translateY(-2px)" : "none", boxShadow: hoveredPost === post.id ? `0 8px 30px ${c.accentGlow}` : "none", display: "block", color: c.text }}>
                     <div style={{ fontSize: "28px", marginBottom: "12px" }}>{post.emoji}</div>
                     <span style={{ background: c.tag, color: c.tagText, padding: "2px 8px", borderRadius: "10px", fontSize: "11px", fontWeight: 600 }}>{post.category}</span>
                     <h2 style={{ fontSize: "16px", fontWeight: 700, lineHeight: 1.4, margin: "12px 0 8px", letterSpacing: "-0.2px" }}>{post.title}</h2>
                     <p style={{ color: c.muted, fontSize: "13px", lineHeight: 1.6, marginBottom: "16px" }}>{post.excerpt}</p>
                     <div style={{ display: "flex", gap: "12px", fontSize: "12px", color: c.muted }}>
-                      <span>📅 {post.date}</span>
-                      <span>⏱ {post.readTime}</span>
+                      <span>📅 {post.date}</span><span>⏱ {post.readTime}</span>
                     </div>
-                  </div>
+                  </a>
                   {i === 2 && (
                     <div style={{ gridColumn: "1 / -1" }}>
                       <AdBanner dark={dark} size="leaderboard" />
@@ -193,7 +160,6 @@
             <AdBanner dark={dark} size="rectangle" />
           </div>
 
-          {/* NEWSLETTER with real Mailchimp form */}
           <div style={{ maxWidth: "900px", margin: "0 auto 60px", padding: "0 24px" }}>
             <div style={{ background: `linear-gradient(135deg, rgba(124,92,252,0.13), ${dark ? "#1a1230" : "#f0eeff"})`, border: "1px solid rgba(124,92,252,0.27)", borderRadius: "16px", padding: "36px", textAlign: "center" }}>
               <div style={{ fontSize: "32px", marginBottom: "12px" }}>📬</div>
@@ -228,7 +194,6 @@
             </div>
           </div>
 
-          {/* FOOTER */}
           <footer style={{ borderTop: `1px solid ${c.border}`, padding: "24px", textAlign: "center", color: c.muted, fontSize: "13px" }}>
             <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "8px", marginBottom: "8px" }}>
               <div style={{ width: "20px", height: "20px", borderRadius: "6px", background: "linear-gradient(135deg, #7c5cfc, #c45cfc)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "10px" }}>⚡</div>
@@ -252,8 +217,7 @@
   <script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script>
   <script type="text/javascript">
     (function($) {
-      window.fnames = new Array();
-      window.ftypes = new Array();
+      window.fnames = new Array(); window.ftypes = new Array();
       fnames[0]='EMAIL'; ftypes[0]='email';
     }(jQuery));
     var $mcj = jQuery.noConflict(true);
